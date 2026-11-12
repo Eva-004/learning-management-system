@@ -7,7 +7,7 @@ import Image from "next/image";
 const navItems = [
     { name: "Home", href: "/" },
     { name: "Courses", href: "/courses" },
-    { name: "Dashboard", href: "/dashboard" },
+    { name: "Admin Dashboard", href: "/dashboard" },
 ];
 
 const Navbar = () => {

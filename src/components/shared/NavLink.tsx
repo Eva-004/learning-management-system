@@ -14,7 +14,7 @@ const NavLink = ({href, children,className = "",onClick, }:NavLinkProps) => {
     const pathName = usePathname();
     const isActive = href === pathName;
     return (
-       <Link href={href} onClick={onClick} className={`${className} ${isActive ? "bg-[#26704F] text-white  font-extrabold " : ""}`}>
+       <Link href={href} onClick={onClick} className={`${className} ${isActive ? "bg-[#0F4C5C] text-white  font-extrabold " : ""}`}>
         {children}
        </Link>
     );
