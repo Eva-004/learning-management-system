@@ -1,8 +1,12 @@
-
-import { FaBars } from "react-icons/fa";
+"use client"
+import { FaBars, FaSignOutAlt } from "react-icons/fa";
 import Link from "next/link";
 import NavLink from "./NavLink";
 import Image from "next/image";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { Button } from "@heroui/react";
+import { toast } from "react-toastify";
 
 const navItems = [
     { name: "Home", href: "/" },
@@ -11,6 +15,15 @@ const navItems = [
 ];
 
 const Navbar = () => {
+    const userData = authClient.useSession();
+    const user = userData.data?.user;
+    console.log(user);
+    const router = useRouter();
+    const handleLogOut = async () => {
+    await authClient.signOut();
+    toast.success('Logout successfully!');
+    router.push("/login");
+  }
     return (
         <div className="relative z-20 px-4 py-4">
             <div className="navbar max-w-5xl mx-auto rounded-full bg-white/90 backdrop-blur-md border border-white shadow-xl px-5">
@@ -74,11 +87,22 @@ const Navbar = () => {
 
 
                 <div className="navbar-end">
-                    <Link
-                        href="/login"
-                        className="btn rounded-full bg-white text-[#0F4C5C] px-6 hover:bg-[#0F4C5C] hover:text-white btn-outline"  >
-                        Login
-                    </Link>
+                    {!user ? (
+                        <Link
+                            href="/login"
+                            className="btn btn-outline rounded-full bg-white text-[#0F4C5C] px-6 hover:bg-[#0F4C5C] hover:text-white transition-all duration-300"
+                        >
+                            Login
+                        </Link>
+                    ) : (
+                        <Button
+                            onPress={handleLogOut}
+                            className="rounded-full bg-white text-[#0F4C5C] px-6 border border-[#0F4C5C] hover:bg-[#0F4C5C] hover:text-white transition-all duration-300"
+                        >
+                            <FaSignOutAlt />
+                            Logout
+                        </Button>
+                    )}
                 </div>
 
             </div>
