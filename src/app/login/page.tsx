@@ -1,10 +1,33 @@
-
-import React from "react";
+"use client"
+import React, { FormEvent } from "react";
 import Link from "next/link";
 import { Button, Card, Input, Label, TextField } from "@heroui/react";
 import { FaLock, FaBookOpen } from "react-icons/fa";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+
 
 const LoginPage = () => {
+    const router = useRouter();
+    const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const email = formData.get("email") as string;
+        const password = formData.get("password") as string;
+        const { data, error } = await authClient.signIn.email({
+            email,
+            password,
+        });
+
+        if (error) {
+            toast.error(error.message || "Login failed");
+            return;
+        }
+        toast.success("Login successfully!");
+        router.push("/");
+
+    }
     return (
         <div className="min-h-[80vh] bg-[#F8FAFB] flex items-center justify-center px-4 py-12">
             <Card className="w-full max-w-md bg-white p-8 shadow-lg rounded-2xl border border-gray-100">
@@ -22,7 +45,7 @@ const LoginPage = () => {
                     </p>
                 </div>
 
-                <form className="flex flex-col gap-5">
+                <form className="flex flex-col gap-5" onSubmit={onSubmit}>
                     <TextField name="email" type="email" isRequired>
                         <Label className="text-[#1D2D44] font-medium">
                             Email Address
@@ -46,8 +69,6 @@ const LoginPage = () => {
                     <Button
                         type="submit"
                         className="w-full bg-[#0F4C5C] text-white font-semibold hover:bg-[#0b3b47]"
-                        radius="lg"
-                        size="lg"
                     >
                         <FaLock />
                         Login
