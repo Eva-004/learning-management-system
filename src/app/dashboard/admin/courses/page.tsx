@@ -6,6 +6,7 @@ import { Button } from "@heroui/react";
 import { FaPlus } from "react-icons/fa";
 import { getAllCourses } from "@/lib/api";
 import CourseTable from "@/components/dashboard/course/CourseTable";
+import AddCourseModal from "@/components/dashboard/course/AddCourseModal";
 
 export interface Course {
     _id: string;
@@ -43,12 +44,7 @@ const CourseManagementPage = () => {
                     </p>
                 </div>
 
-                <Button
-                    className="bg-[#0F4C5C] text-white font-medium"
-               
-                >
-                 <FaPlus />   Create Course
-                </Button>
+                <AddCourseModal/>
             </div>
 
             
