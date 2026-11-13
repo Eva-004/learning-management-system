@@ -24,3 +24,19 @@ export async function AddCourses (courseData : Course){
         const data = await res.json();
         return data;
 }
+export async function UpdateCourse(id: string, courseData: Partial<Course>) {
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/courses/${id}`,
+        {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify(courseData),
+        }
+    );
+
+    const data = await res.json();
+    return data;
+}
