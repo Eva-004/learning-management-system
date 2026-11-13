@@ -4,14 +4,14 @@ import Link from "next/link";
 import NavLink from "./NavLink";
 import Image from "next/image";
 import { authClient } from "@/lib/auth-client";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@heroui/react";
 import { toast } from "react-toastify";
 
 const navItems = [
     { name: "Home", href: "/" },
     { name: "Courses", href: "/courses" },
-    { name: "Admin Dashboard", href: "/dashboard" },
+    { name: "Admin Dashboard", href: "/dashboard/admin" },
 ];
 
 const Navbar = () => {
@@ -19,11 +19,16 @@ const Navbar = () => {
     const user = userData.data?.user;
     console.log(user);
     const router = useRouter();
+    const pathName: string = usePathname();
+
+    if (pathName.includes("dashboard")) {
+        return null;
+    }
     const handleLogOut = async () => {
-    await authClient.signOut();
-    toast.success('Logout successfully!');
-    router.push("/login");
-  }
+        await authClient.signOut();
+        toast.success('Logout successfully!');
+        router.push("/login");
+    }
     return (
         <div className="relative z-20 px-4 py-4">
             <div className="navbar max-w-5xl mx-auto rounded-full bg-white/90 backdrop-blur-md border border-white shadow-xl px-5">

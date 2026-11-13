@@ -12,10 +12,10 @@ export default function DashboardSidebar() {
   const router = useRouter();
 
   const permissions = [
-    { label: "Overview", href: "/dashboard" },
-    { label: "Courses", href: "/dashboard/courses" },
-    { label: "Lectures", href: "/dashboard/lectures" },
-  ];
+        { label: "Overview", href: "/dashboard/admin" },
+        { label: "Course Management", href: "/dashboard/admin/courses" },
+        { label: "Lecture Management", href: "/dashboard/admin/lectures" },
+    ];
 
   const handleLogOut = async () => {
     try {
@@ -51,7 +51,7 @@ export default function DashboardSidebar() {
     <div className="hidden min-h-screen w-60 shrink-0 border-r border-[#0F4C5C]/10 bg-[#0F4C5C] md:flex">
       <div className="flex w-full flex-col p-3">
         <div className="mb-6 flex items-center gap-3 px-1">
-          <h1 className="text-2xl font-bold text-white">
+          <h1 className="text-xl font-bold text-white">
             LMS
           </h1>
         </div>

@@ -1,8 +1,14 @@
-
+"use client"
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaBookOpen } from "react-icons/fa";
 
 const Footer = () => {
+    const pathName: string = usePathname();
+
+  if (pathName.includes("dashboard")) {
+    return null;
+  }
     return (
         <footer className="bg-[#0F4C5C] text-white px-6 py-8">
             <div className="max-w-6xl mx-auto">

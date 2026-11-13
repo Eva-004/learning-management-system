@@ -29,9 +29,9 @@ const DashboardNavbar = ({ user }: DashboardNavbarProps) => {
     const router = useRouter();
 
     const permissions = [
-        { label: "Overview", href: "/dashboard" },
-        { label: "Courses", href: "/dashboard/courses" },
-        { label: "Lectures", href: "/dashboard/lectures" },
+        { label: "Overview", href: "/dashboard/admin" },
+        { label: "Course Management", href: "/dashboard/admin/courses" },
+        { label: "Lecture Management", href: "/dashboard/admin/lectures" },
     ];
 
     const handleLogOut = async () => {
