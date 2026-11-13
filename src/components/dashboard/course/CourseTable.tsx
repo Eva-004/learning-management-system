@@ -3,7 +3,9 @@ import React from "react";
 import Image from "next/image";
 import { Button, Table } from "@heroui/react";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import UpdateCourseModal from "./UpdateCourseModal.tsx/UpdateCourseModal";
+import UpdateCourseModal from "./UpdateCourseModal";
+import DeleteCourseModal from "./DeleteCourseModal";
+
 
 export interface Course {
     _id: string;
@@ -67,15 +69,7 @@ const CourseTable = ({ courses }: CourseTableProps) => {
                                 <Table.Cell>
                                     <div className="flex items-center gap-2">
                                         <UpdateCourseModal course={course}/>
-
-                                        <Button
-                                            isIconOnly
-                                            size="sm"
-                                            className={'text-red-600 bg-white'}
-                                            aria-label="Delete course"
-                                        >
-                                            <FaTrash />
-                                        </Button>
+                                        <DeleteCourseModal course={course}/>
                                     </div>
                                 </Table.Cell>
                             </Table.Row>

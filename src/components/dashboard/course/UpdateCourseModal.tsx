@@ -32,8 +32,6 @@ const UpdateCourseModal = ({ course }: UpdateCourseModalProps) => {
             price: Number(formData.get("price")),
             thumbnail: formData.get("thumbnail") as string,
         };
-
-        try {
             const data = await UpdateCourse(course._id, courseData);
 
             if (data.success) {
@@ -41,10 +39,6 @@ const UpdateCourseModal = ({ course }: UpdateCourseModalProps) => {
             } else {
                 toast.error(data.message || "Failed to update course");
             }
-        } catch (error) {
-            toast.error("Something went wrong");
-            console.error(error);
-        }
     };
 
     return (

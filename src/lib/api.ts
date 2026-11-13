@@ -40,3 +40,15 @@ export async function UpdateCourse(id: string, courseData: Partial<Course>) {
     const data = await res.json();
     return data;
 }
+export async function DeleteCourse(id: string) {
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/courses/${id}`,
+        {
+            method: "DELETE",
+            credentials: "include",
+        }
+    );
+
+    const data = await res.json();
+    return data;
+}
