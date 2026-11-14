@@ -108,3 +108,19 @@ export async function DeleteLecture(id: string) {
     const data = await res.json();
     return data;
 }
+export async function getCourseById(id: string) {
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/courses/${id}`
+    );
+
+    return await res.json();
+}
+
+
+export async function getLecturesByCourseId(courseId: string) {
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/lectures/course/${courseId}`
+    );
+
+    return await res.json();
+}
