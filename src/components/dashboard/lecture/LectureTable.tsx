@@ -4,6 +4,9 @@
 import React from "react";
 import { Button, Table } from "@heroui/react";
 import { FaEdit, FaTrash, FaPlay } from "react-icons/fa";
+import Link from "next/link";
+import UpdateLectureModal from "./UpdateLectureModal";
+import DeleteLectureModal from "./DeleteLectureModal";
 
 export interface Lecture {
     _id: string;
@@ -64,34 +67,20 @@ const LectureTable = ({ lectures, courses }: LectureTableProps) => {
                                 </Table.Cell>
 
                                 <Table.Cell>
-                                    <a
+                                    <Link
                                         href={lecture.videoUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 text-[#0F4C5C] hover:underline"
-                                    >
+                                        className="inline-flex items-center gap-2 text-[#0F4C5C] hover:underline">
                                         <FaPlay size={12} />
                                         Watch Video
-                                    </a>
+                                    </Link>
                                 </Table.Cell>
 
                                 <Table.Cell>
                                     <div className="flex items-center gap-2">
-                                        <Button
-                                            size="sm"
-                                            className="bg-[#0F4C5C] text-white"
-                                        >
-                                            <FaEdit />
-                                            Edit
-                                        </Button>
-
-                                        <Button
-                                            size="sm"
-                                            className="bg-red-50 text-red-600"
-                                        >
-                                            <FaTrash />
-                                            Delete
-                                        </Button>
+                                        <UpdateLectureModal lecture={lecture}/>
+                                         <DeleteLectureModal lecture={lecture}/>
                                     </div>
                                 </Table.Cell>
                             </Table.Row>
