@@ -32,7 +32,7 @@ const AddCourseModal = () => {
         toast.success("added course successfully");
        }
        else{
-        toast.error(data.status);
+        toast.error(data.message);
        }
         console.log(courseData);
     };
